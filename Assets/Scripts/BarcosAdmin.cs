@@ -64,7 +64,7 @@ public class BarcosAdmin : MonoBehaviour {
 
     private Barco instanciarEncouracado(int x, int y) {
         spriteRenderer.sprite = encouracado;
-        embarcacao.GetComponent<BoxCollider2D>().size = new Vector2(2, 1);
+        embarcacao.GetComponent<BoxCollider2D>().size = new Vector2(3, 1);
         return Instantiate(embarcacao, new Vector3(x, y), Quaternion.identity);
     }
 
