@@ -135,10 +135,10 @@ public class JogoAdmin : MonoBehaviour {
         this.gradeAdmin.modificarGrade(2, false);
 
         if(BotoesMenuInicial.dificuldade == "dificil") {
-            await bot.Atacar(this.gradeAdmin);
+            await bot.AtacarDificil(this.gradeAdmin);
         }
         else if (BotoesMenuInicial.dificuldade == "facil") {
-            //Adicionar turno do bot facil
+            await bot.AtacarFacil(this.gradeAdmin);
         }
 
         if (this.gradeAdmin.checarVitoria(2)) {
