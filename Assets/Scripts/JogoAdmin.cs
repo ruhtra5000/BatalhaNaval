@@ -134,7 +134,12 @@ public class JogoAdmin : MonoBehaviour {
         this.gradeAdmin.modificarGrade(1, false);
         this.gradeAdmin.modificarGrade(2, false);
 
-        await bot.Atacar(this.gradeAdmin);
+        if(BotoesMenuInicial.dificuldade == "fácil"){
+            await bot.AtacarFacil(this.gradeAdmin);
+        }
+        else if(BotoesMenuInicial.dificuldade == "difícil"){
+            await bot.Atacar(this.gradeAdmin);
+        }
 
         if (this.gradeAdmin.checarVitoria(2)) {
             vencedor = 2;
