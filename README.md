@@ -24,3 +24,12 @@ Desenvolver uma versão funcional do clássico jogo “Batalha Naval”, visando
 - C#
 - Visual Studio / VS Code
 - Unity (versão 6000.0.34f1)
+
+## 🏅 Créditos Externos
+### Sprites de Embarcações
+- Autor: Lowder2
+- Fonte: Sea Warfare Set (Ships and More) – disponível em OpenGameArt.org
+
+### Sound FX
+- Autor(es): SFB Games
+- Fonte: ChipTone - disponível em sfbgames.itch.io
