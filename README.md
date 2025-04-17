@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/a7db2585-f29f-4238-8473-3a4de5104f05" width=300px/>
+</div>
+
 # Batalha Naval
 
 Este repositório contém o projeto desenvolvido em **C#** utilizando o **Unity**, como parte da disciplina de **Paradigmas de Linguagens de Programação**.
@@ -24,3 +28,12 @@ Desenvolver uma versão funcional do clássico jogo “Batalha Naval”, visando
 - C#
 - Visual Studio / VS Code
 - Unity (versão 6000.0.34f1)
+
+## 🏅 Créditos Externos
+### Sprites de Embarcações
+- Autor: Lowder2
+- Fonte: Sea Warfare Set (Ships and More) – disponível em OpenGameArt.org
+
+### Sound FX
+- Autor(es): SFB Games
+- Fonte: ChipTone - disponível em sfbgames.itch.io
