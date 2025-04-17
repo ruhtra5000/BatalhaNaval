@@ -40,6 +40,7 @@ public class Bot : MonoBehaviour {
 
                 Vector3 posicaoCentralizada = new Vector3(x + 11 + tamanho.x / 2f - 0.5f, y + tamanho.y / 2f - 0.5f, 0);
                 Barco barcoTemp = instanciador(x + 11, y);
+                removerVisualizacaoBarco(barcoTemp);
                 barcoTemp.transform.position = posicaoCentralizada;
                 barcoTemp.transform.rotation = rotacao;
 
@@ -88,10 +89,8 @@ public class Bot : MonoBehaviour {
         return horizontal ? new Quaternion(0f, 0f, 0f, 1f) : new Quaternion(0f, 0f, 0.7071068f, 0.7071068f);
     }
 
-    private void EsconderVisualDoBarco(Barco barco) {
-        foreach (var renderer in barco.GetComponentsInChildren<Renderer>()) {
-            renderer.enabled = false;
-        }
+    private void removerVisualizacaoBarco(Barco barco) {
+        barco.esconderVisualizacao();
     }
 
     public async Task Atacar(GradeAdmin gradeAdmin) {

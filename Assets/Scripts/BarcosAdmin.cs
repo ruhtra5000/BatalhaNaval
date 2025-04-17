@@ -114,8 +114,7 @@ public class BarcosAdmin : MonoBehaviour {
             barcos = this.barcos2;
 
         foreach (Barco barco in barcos){
-            SpriteRenderer sr = barco.GetComponent<SpriteRenderer>();
-            sr.enabled = false;
+            barco.esconderVisualizacao();
         }
     }
 
@@ -128,8 +127,7 @@ public class BarcosAdmin : MonoBehaviour {
             barcos = this.barcos2;
 
         foreach (Barco barco in barcos){
-            BoxCollider2D collider = barco.GetComponent<BoxCollider2D>();
-            collider.enabled = false;
+            barco.removerColisao();
         }
     }
 }

@@ -31,4 +31,14 @@ public class Barco : MonoBehaviour {
             transform.rotation = rotacao;
         }
     }
+
+    public void esconderVisualizacao() {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr.enabled = false;
+    }
+
+    public void removerColisao() {
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
+        collider.enabled = false;
+    }
 }
