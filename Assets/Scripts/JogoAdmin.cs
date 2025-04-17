@@ -8,7 +8,7 @@ public class JogoAdmin : MonoBehaviour {
     [SerializeField] private BarcosAdmin barcosAdmin;
     [SerializeField] private Bot bot;
     private EstadoJogo estadoJogo;
-    private int vencedor;
+    public static int vencedor;
     private bool click = false;
 
     void Start() {
@@ -97,7 +97,7 @@ public class JogoAdmin : MonoBehaviour {
         await celulaClicada();
 
         if (this.gradeAdmin.checarVitoria(1)) {
-            this.vencedor = 1;
+            vencedor = 1;
             mudarEstado(EstadoJogo.FIM_DE_JOGO);
         }
 
@@ -122,7 +122,7 @@ public class JogoAdmin : MonoBehaviour {
         await celulaClicada();
 
         if (this.gradeAdmin.checarVitoria(2)) {
-            this.vencedor = 2;
+            vencedor = 2;
             mudarEstado(EstadoJogo.FIM_DE_JOGO);
         }
 
@@ -137,7 +137,7 @@ public class JogoAdmin : MonoBehaviour {
         await bot.Atacar(this.gradeAdmin);
 
         if (this.gradeAdmin.checarVitoria(2)) {
-            this.vencedor = 2;
+            vencedor = 2;
             mudarEstado(EstadoJogo.FIM_DE_JOGO);
         }
         else {
@@ -146,8 +146,7 @@ public class JogoAdmin : MonoBehaviour {
     }
 
     private void fimDeJogo() {
-        print($"Jogador {this.vencedor} venceu!");
-        SceneManager.LoadSceneAsync("SelecaoModoJogo");
+        SceneManager.LoadSceneAsync("TelaVitoria");
     }
 
     //Métodos auxiliares para capturar o clique do jogador em alguma celula
