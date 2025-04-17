@@ -56,32 +56,32 @@ public class BarcosAdmin : MonoBehaviour {
     }
 
     //Criar embarcações
-    private Barco instanciarSubmarino(int x, int y) {
+    public Barco instanciarSubmarino(int x, int y) {
         spriteRenderer.sprite = submarino;
         embarcacao.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
         return Instantiate(embarcacao, new Vector3(x, y), Quaternion.identity);
     }
 
-    private Barco instanciarEncouracado(int x, int y) {
+    public Barco instanciarEncouracado(int x, int y) {
         spriteRenderer.sprite = encouracado;
         embarcacao.GetComponent<BoxCollider2D>().size = new Vector2(3, 1);
         return Instantiate(embarcacao, new Vector3(x, y), Quaternion.identity);
     }
 
-    private Barco instanciarNavioDeGuerra(int x, int y) {
+    public Barco instanciarNavioDeGuerra(int x, int y) {
         spriteRenderer.sprite = navioGuerra;
         embarcacao.GetComponent<BoxCollider2D>().size = new Vector2(4, 1);
         return Instantiate(embarcacao, new Vector3(x, y), Quaternion.identity);
     }
 
-    private Barco instanciarPortaAvioes(int x, int y) {
+    public Barco instanciarPortaAvioes(int x, int y) {
         spriteRenderer.sprite = portaAvioes;
         embarcacao.GetComponent<BoxCollider2D>().size = new Vector2(6, 1);
         return Instantiate(embarcacao, new Vector3(x, y), Quaternion.identity);
     }
 
     //Instanciar menus
-    private async void criarMenuJogador1() {
+    public async void criarMenuJogador1() {
         PainelBarcos painel = Instantiate(painelBarcos, new Vector3(17, 6, 0), Quaternion.identity);
         await painel.init(16, 0); //Aguarda o painel ser fechado
         Destroy(painel.gameObject);
@@ -101,6 +101,11 @@ public class BarcosAdmin : MonoBehaviour {
         flag = true;
     }
 
+       public void setBarcosJogador2Bot(Barco[] barcos)
+    {
+        this.barcos2 = barcos;
+    }
+    
     //Esconder os barcos de cada jogador
     private void esconderBarcos(int jogador) {
         Barco [] barcos = null;
