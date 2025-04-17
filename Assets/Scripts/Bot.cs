@@ -155,6 +155,59 @@ public class Bot : MonoBehaviour {
         }
     }
 
+    public async Task AtacarModoFacil(GradeAdmin gradeAdmin) {
+        await Task.Delay(1000);
+
+        Dictionary<Vector2, Tile> gradeJ1 = gradeAdmin.GetGrade(1);
+        Vector2Int alvo;
+
+        if (alvosPendentes.Count == 0) {
+            do {
+                int x = Random.Range(0, 10);
+                int y = Random.Range(0, 10);
+                alvo = new Vector2Int(x, y);
+            }
+            while (alvosJaAtacados.Contains(alvo) || gradeJ1[new Vector2(alvo.x, alvo.y)].foiAlvejado);
+        }
+        else {
+            alvo = alvosPendentes.Dequeue();
+            while ((alvosJaAtacados.Contains(alvo) || gradeJ1[new Vector2(alvo.x, alvo.y)].foiAlvejado) && alvosPendentes.Count > 0)
+                alvo = alvosPendentes.Dequeue();
+        }
+
+        alvosJaAtacados.Add(alvo);
+        Tile tile = gradeJ1[new Vector2(alvo.x, alvo.y)];
+
+        if (tile.temEmbarcacao) {
+            tile.GetComponent<SpriteRenderer>().color = Color.green;
+            tile.GetType().GetProperty("foiAlvejado").SetValue(tile, true, null);
+            tile.tocarSomAcerto();
+
+            List<Vector2Int> direcoesPossiveis = DirecoesAdjacentes();
+            foreach (var direcao in direcoesPossiveis) {
+                Vector2Int vizinho = alvo + direcao;
+                if (vizinho.x >= 0 && vizinho.x < 10 && vizinho.y >= 0 && vizinho.y < 10) {
+                    Tile tileVizinho = gradeJ1[new Vector2(vizinho.x, vizinho.y)];
+
+                    if (!alvosJaAtacados.Contains(vizinho) && !alvosPendentes.Contains(vizinho))
+                    {
+                        alvosPendentes.Enqueue(vizinho);
+                    }
+
+                }
+            }
+
+            await Task.Delay(500);
+            await Atacar(gradeAdmin);
+        }
+        else {
+            tile.GetComponent<SpriteRenderer>().color = Color.red;
+            tile.GetType().GetProperty("foiAlvejado").SetValue(tile, true, null);
+            tile.tocarSomErro();
+            await Task.Delay(500);
+        }
+    }
+
     private List<Vector2Int> DirecoesAdjacentes() {
         return new List<Vector2Int> {
             new Vector2Int(1, 0),   // Direita
