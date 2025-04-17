@@ -237,8 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd2431e27f6aa34ca112bbd508191bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corBase: {r: 0.2691349, g: 0.6434723, b: 0.9056604, a: 1}
-  corModificada: {r: 0.22841759, g: 0.57943225, b: 0.8207547, a: 1}
+  corBase: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+  corModificada: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
   corErrado: {r: 0.9150943, g: 0.18560876, b: 0.18560876, a: 1}
   corCerto: {r: 0.33593127, g: 0.8490566, b: 0.2683339, a: 1}
   spriteRenderer: {fileID: 4404799884177214408}
