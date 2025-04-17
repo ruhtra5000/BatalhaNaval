@@ -99,18 +99,15 @@ public class Bot : MonoBehaviour {
         Dictionary<Vector2, Tile> gradeJ1 = gradeAdmin.GetGrade(1);
         Vector2Int alvo;
 
-        if (alvosPendentes.Count == 0)
-        {
-            do
-            {
+        if (alvosPendentes.Count == 0) {
+            do {
                 int x = Random.Range(0, 10);
                 int y = Random.Range(0, 10);
                 alvo = new Vector2Int(x, y);
             }
             while (alvosJaAtacados.Contains(alvo) || gradeJ1[new Vector2(alvo.x, alvo.y)].foiAlvejado);
         }
-        else
-        {
+        else {
             alvo = alvosPendentes.Dequeue();
             while ((alvosJaAtacados.Contains(alvo) || gradeJ1[new Vector2(alvo.x, alvo.y)].foiAlvejado) && alvosPendentes.Count > 0)
                 alvo = alvosPendentes.Dequeue();
@@ -119,30 +116,27 @@ public class Bot : MonoBehaviour {
         alvosJaAtacados.Add(alvo);
         Tile tile = gradeJ1[new Vector2(alvo.x, alvo.y)];
 
-        if (tile.temEmbarcacao)
-        {
+        if (tile.temEmbarcacao) {
             tile.GetComponent<SpriteRenderer>().color = Color.green;
             tile.GetType().GetProperty("foiAlvejado").SetValue(tile, true, null);
             tile.tocarSomAcerto();
 
             List<Vector2Int> direcoesPossiveis = DirecoesAdjacentes();
-            foreach (var direcao in direcoesPossiveis)
-            {
+            foreach (var direcao in direcoesPossiveis) {
                 Vector2Int vizinho = alvo + direcao;
-                if (vizinho.x >= 0 && vizinho.x < 10 && vizinho.y >= 0 && vizinho.y < 10)
-                {
+                if (vizinho.x >= 0 && vizinho.x < 10 && vizinho.y >= 0 && vizinho.y < 10) {
                     Tile tileVizinho = gradeJ1[new Vector2(vizinho.x, vizinho.y)];
-                    if (tileVizinho.temEmbarcacao && !alvosJaAtacados.Contains(vizinho))
-                    {
+
+                    if (tileVizinho.temEmbarcacao && !alvosJaAtacados.Contains(vizinho)) {
                         alvosPendentes.Enqueue(vizinho);
 
                         Vector2Int oposta = new Vector2Int(-direcao.x, -direcao.y);
                         Vector2Int vizinhoOposto = alvo + oposta;
-                        if (vizinhoOposto.x >= 0 && vizinhoOposto.x < 10 && vizinhoOposto.y >= 0 && vizinhoOposto.y < 10)
-                        {
+
+                        if (vizinhoOposto.x >= 0 && vizinhoOposto.x < 10 && vizinhoOposto.y >= 0 && vizinhoOposto.y < 10) {
                             Tile tileOposto = gradeJ1[new Vector2(vizinhoOposto.x, vizinhoOposto.y)];
-                            if (tileOposto.temEmbarcacao && !alvosJaAtacados.Contains(vizinhoOposto))
-                            {
+                            
+                            if (tileOposto.temEmbarcacao && !alvosJaAtacados.Contains(vizinhoOposto)) {
                                 alvosPendentes.Enqueue(vizinhoOposto);
                             }
                         }
