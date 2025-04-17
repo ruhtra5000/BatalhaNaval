@@ -89,6 +89,12 @@ public class GradeAdmin : MonoBehaviour {
         }
     }
 
+    
+    public Dictionary<Vector2, Tile> GetGrade(int jogador)
+    {
+        return jogador == 1 ? celulas1 : celulas2;
+    }
+
     //Checa a vitória do jogador 1 ou 2
     public bool checarVitoria(int jogador) {
         Dictionary<Vector2, Tile> celulas = null;

@@ -31,13 +31,16 @@ public class Tile : MonoBehaviour {
     //Registrar clicks
     void OnMouseUp() {
         if(!foiAlvejado) {
-            if(this.temEmbarcacao)
+            if (this.temEmbarcacao)
+            {
                 spriteRenderer.color = corCerto;
+            }
             else
+            {
                 spriteRenderer.color = corErrado;
-
+                FindAnyObjectByType<JogoAdmin>().setClickTrue();
+            }
             foiAlvejado = true;
-            FindAnyObjectByType<JogoAdmin>().setClickTrue();
         }
     }
 
