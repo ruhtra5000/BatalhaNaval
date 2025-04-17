@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/a7db2585-f29f-4238-8473-3a4de5104f05" width=300px/>
+</div>
+
 # Batalha Naval
 
 Este repositório contém o projeto desenvolvido em **C#** utilizando o **Unity**, como parte da disciplina de **Paradigmas de Linguagens de Programação**.
