@@ -93,7 +93,7 @@ public class Bot : MonoBehaviour {
         barco.esconderVisualizacao();
     }
 
-    public async Task Atacar(GradeAdmin gradeAdmin) {
+    public async Task AtacarDificil(GradeAdmin gradeAdmin) {
         await Task.Delay(500);
 
         Dictionary<Vector2, Tile> gradeJ1 = gradeAdmin.GetGrade(1);
@@ -145,7 +145,7 @@ public class Bot : MonoBehaviour {
             }
 
             await Task.Delay(500);
-            await Atacar(gradeAdmin);
+            await AtacarDificil(gradeAdmin);
         }
         else {
             tile.GetComponent<SpriteRenderer>().color = Color.red;
@@ -155,7 +155,7 @@ public class Bot : MonoBehaviour {
         }
     }
 
-    public async Task AtacarModoFacil(GradeAdmin gradeAdmin) {
+    public async Task AtacarFacil(GradeAdmin gradeAdmin) {
         await Task.Delay(500);
 
         Dictionary<Vector2, Tile> gradeJ1 = gradeAdmin.GetGrade(1);
@@ -198,7 +198,7 @@ public class Bot : MonoBehaviour {
             }
 
             await Task.Delay(500);
-            await Atacar(gradeAdmin);
+            await AtacarFacil(gradeAdmin);
         }
         else {
             tile.GetComponent<SpriteRenderer>().color = Color.red;
