@@ -101,8 +101,7 @@ public class BarcosAdmin : MonoBehaviour {
         flag = true;
     }
 
-       public void setBarcosJogador2Bot(Barco[] barcos)
-    {
+    public void setBarcosJogador2Bot(Barco[] barcos) {
         this.barcos2 = barcos;
     }
     

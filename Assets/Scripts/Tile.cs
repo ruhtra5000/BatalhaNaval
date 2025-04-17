@@ -32,11 +32,8 @@ public class Tile : MonoBehaviour {
     void OnMouseUp() {
         if(!foiAlvejado) {
             if (this.temEmbarcacao)
-            {
                 spriteRenderer.color = corCerto;
-            }
-            else
-            {
+            else {
                 spriteRenderer.color = corErrado;
                 FindAnyObjectByType<JogoAdmin>().setClickTrue();
             }

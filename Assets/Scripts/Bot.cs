@@ -3,35 +3,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Bot : MonoBehaviour
-{
+public class Bot : MonoBehaviour {
     [SerializeField] private BarcosAdmin barcosAdmin;
     [SerializeField] private int largura = 10;
     [SerializeField] private int altura = 10;
     private Queue<Vector2Int> alvosPendentes = new();
     private HashSet<Vector2Int> alvosJaAtacados = new();
 
-    public async Task PosicionarBarcos()
-    {
+    public async Task PosicionarBarcos() {
         List<(Vector2 tamanho, System.Func<int, int, Barco> instanciador)> tiposBarcos = new()
-    {
-        (new Vector2(1, 1), barcosAdmin.instanciarSubmarino),
-        (new Vector2(3, 1), barcosAdmin.instanciarEncouracado),
-        (new Vector2(3, 1), barcosAdmin.instanciarEncouracado),
-        (new Vector2(4, 1), barcosAdmin.instanciarNavioDeGuerra),
-        (new Vector2(6, 1), barcosAdmin.instanciarPortaAvioes)
-    };
+        {
+            (new Vector2(1, 1), barcosAdmin.instanciarSubmarino),
+            (new Vector2(3, 1), barcosAdmin.instanciarEncouracado),
+            (new Vector2(3, 1), barcosAdmin.instanciarEncouracado),
+            (new Vector2(4, 1), barcosAdmin.instanciarNavioDeGuerra),
+            (new Vector2(6, 1), barcosAdmin.instanciarPortaAvioes)
+        };
 
         List<Barco> barcosBot = new();
 
-        foreach (var (tamanhoOriginal, instanciador) in tiposBarcos)
-        {
+        foreach (var (tamanhoOriginal, instanciador) in tiposBarcos) {
             bool posicionado = false;
             Vector2 tamanho;
             Quaternion rotacao;
 
-            while (!posicionado)
-            {
+            while (!posicionado) {
                 bool horizontal = Random.value > 0.5f;
                 tamanho = horizontal ? tamanhoOriginal : new Vector2(tamanhoOriginal.y, tamanhoOriginal.x);
                 rotacao = ObterRotacao(horizontal);
@@ -54,8 +50,7 @@ public class Bot : MonoBehaviour
                 Collider2D[] colisores = Physics2D.OverlapBoxAll(bounds.center, bounds.size, 0);
                 colisores = colisores.Where(c => c.gameObject != barcoTemp.gameObject).ToArray();
 
-                if (colisores.Length > 0)
-                {
+                if (colisores.Length > 0) {
                     GameObject.Destroy(barcoTemp.gameObject);
                     await Task.Yield();
                     continue;
@@ -87,24 +82,19 @@ public class Bot : MonoBehaviour
         }
 
         barcosAdmin.setBarcosJogador2Bot(barcosBot.ToArray());
-
     }
 
-    private Quaternion ObterRotacao(bool horizontal)
-    {
+    private Quaternion ObterRotacao(bool horizontal) {
         return horizontal ? new Quaternion(0f, 0f, 0f, 1f) : new Quaternion(0f, 0f, 0.7071068f, 0.7071068f);
     }
 
-    private void EsconderVisualDoBarco(Barco barco)
-    {
-    foreach (var renderer in barco.GetComponentsInChildren<Renderer>())
-    {
-        renderer.enabled = false;
+    private void EsconderVisualDoBarco(Barco barco) {
+        foreach (var renderer in barco.GetComponentsInChildren<Renderer>()) {
+            renderer.enabled = false;
+        }
     }
-}
 
-    public async Task Atacar(GradeAdmin gradeAdmin)
-    {
+    public async Task Atacar(GradeAdmin gradeAdmin) {
         Dictionary<Vector2, Tile> gradeJ1 = gradeAdmin.GetGrade(1);
         Vector2Int alvo;
 
@@ -161,22 +151,20 @@ public class Bot : MonoBehaviour
             await Task.Delay(500);
             await Atacar(gradeAdmin);
         }
-        else
-        {
+        else {
             tile.GetComponent<SpriteRenderer>().color = Color.red;
             tile.GetType().GetProperty("foiAlvejado").SetValue(tile, true, null);
             await Task.Delay(500);
         }
     }
 
-    private List<Vector2Int> DirecoesAdjacentes()
-    {
+    private List<Vector2Int> DirecoesAdjacentes() {
         return new List<Vector2Int> {
-        new Vector2Int(1, 0),   // Direita
-        new Vector2Int(-1, 0),  // Esquerda
-        new Vector2Int(0, 1),   // Cima
-        new Vector2Int(0, -1)   // Baixo
-    };
+            new Vector2Int(1, 0),   // Direita
+            new Vector2Int(-1, 0),  // Esquerda
+            new Vector2Int(0, 1),   // Cima
+            new Vector2Int(0, -1)   // Baixo
+        };
     }
 }
 
