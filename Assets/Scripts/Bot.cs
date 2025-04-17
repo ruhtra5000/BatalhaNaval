@@ -95,7 +95,7 @@ public class Bot : MonoBehaviour {
     }
 
     public async Task Atacar(GradeAdmin gradeAdmin) {
-        await Task.Delay(500);
+        await Task.Delay(1000);
 
         Dictionary<Vector2, Tile> gradeJ1 = gradeAdmin.GetGrade(1);
         Vector2Int alvo;
@@ -124,6 +124,7 @@ public class Bot : MonoBehaviour {
         {
             tile.GetComponent<SpriteRenderer>().color = Color.green;
             tile.GetType().GetProperty("foiAlvejado").SetValue(tile, true, null);
+            tile.tocarSomAcerto();
 
             List<Vector2Int> direcoesPossiveis = DirecoesAdjacentes();
             foreach (var direcao in direcoesPossiveis)
@@ -156,6 +157,7 @@ public class Bot : MonoBehaviour {
         else {
             tile.GetComponent<SpriteRenderer>().color = Color.red;
             tile.GetType().GetProperty("foiAlvejado").SetValue(tile, true, null);
+            tile.tocarSomErro();
             await Task.Delay(500);
         }
     }
