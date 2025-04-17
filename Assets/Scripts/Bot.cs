@@ -95,6 +95,8 @@ public class Bot : MonoBehaviour {
     }
 
     public async Task Atacar(GradeAdmin gradeAdmin) {
+        await Task.Delay(500);
+
         Dictionary<Vector2, Tile> gradeJ1 = gradeAdmin.GetGrade(1);
         Vector2Int alvo;
 
