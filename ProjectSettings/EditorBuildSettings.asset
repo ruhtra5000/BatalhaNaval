@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SelecaoModoJogo.unity
     guid: acca8dd96f762054eb6347404d45db44
   - enabled: 1
+    path: Assets/Scenes/SelecaoDificuldade.unity
+    guid: 1847baf22eba7d44796650b41808e06e
+  - enabled: 1
     path: Assets/Scenes/BatalhaNaval.unity
     guid: c25fe5e892483934f9e3daa733a5f282
   - enabled: 1
